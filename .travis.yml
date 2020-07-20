@@ -3,5 +3,14 @@ services:
     - docker
 
 script:
-    - docker build -t mannydesigns/node .
-    - docker images mannydesigns/node
+    - docker build -t guidomatos/node .
+    - docker images guidomatos/node
+
+before_deploy:
+    - docker login -u guidomatos -p gmatosc88
+
+deploy:
+    provider: script
+    script: docker push guidomatos/node
+    on:
+        branch: master
